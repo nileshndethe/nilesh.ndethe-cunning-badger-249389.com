@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="BoatSearchForm">    
+    <aura:attribute name="BoatTypes" type="BoatType__c[]"/>
+    <aura:attribute name="newBoatTypeEnable" type="boolean" default="false"/>
+    <aura:attribute name="selectedBoatType" type="String" default=""/>
+    
+    <aura:registerEvent name="formsubmit" type="c:formsubmit" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:layout horizontalAlign="Center">
+        <lightning:layoutItem flexibility="auto" class="slds-m-right_small btnBoatPicklist">
+            <lightning:select name="boatType" variant="standard" value="{!v.selectedBoatType}"  onchange="{!c.validate}">            	
+                <Option value="">All Types</Option>                
+                <aura:iteration items="{!v.BoatTypes}" var="boatType">
+                	<Option value="{!boatType.Id}" text="{!boatType.Name}"></Option>
+                </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+        <lightning:layoutItem flexibility="auto" class="slds-m-right_small btnSearch">
+            <lightning:button name="btnSearch" label="Search" variant="brand" onclick="{!c.onFormSubmit}"></lightning:button>
+        </lightning:layoutItem>
+        <lightning:layoutItem flexibility="auto" class="slds-m-right_small">
+        	<aura:if isTrue="{!v.newBoatTypeEnable}">
+            	<lightning:button name="btnNew" label="New" variant="neutral" onclick="{!c.createRecord}"></lightning:button>
+        	</aura:if>
+        </lightning:layoutItem>
+    </lightning:layout>    
+</aura:component>

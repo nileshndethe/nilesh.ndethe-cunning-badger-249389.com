@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">        
+    <aura:handler name="formsubmit" event="c.formsubmit" action="{!c.onFormSubmit}" />   
+    <lightning:card class="spacer">
+        <aura:set attribute="title">           
+            Find a Boat
+        </aura:set>        
+        <p class="slds-p-horizontal_small">
+            <c:BoatSearchForm ></c:BoatSearchForm>
+        </p>
+    </lightning:card>
+    <lightning:card >
+        <aura:set attribute="title"> 
+            Matching Boat
+        </aura:set>       
+        <p class="slds-p-horizontal_small">
+            <c:BoatSearchResults aura:id="boatSearchRslt"></c:BoatSearchResults>
+        </p>
+    </lightning:card>
+</aura:component>

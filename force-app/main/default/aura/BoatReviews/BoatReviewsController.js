@@ -1,0 +1,16 @@
+({
+    refresh : function(component, event, helper){
+      this.doInit(component, event, helper);  
+    },
+    doInit : function(component, event, helper) {
+		helper.onInit(component, event, helper);
+	},
+    onUserInfoClick : function(component,event,helper){
+        var userId = event.currentTarget.getAttribute("data-userid");
+        var navEvt = $A.get("e.force:navigateToSObject");
+        navEvt.setParams({
+            "recordId" : userId,
+        });
+        navEvt.fire();
+    }
+})
